@@ -1,0 +1,15 @@
+
+<div class="container mt-5">
+    <div *ngIf="photo" class="row animate__animated animate__bounce animate__fadeIn">
+        <div class="col-md-9">
+            <p><strong>Identifier: </strong>{{photo.id}}</p>
+            <p><strong>Title: </strong>{{photo.title}}</p>
+            <p><strong>Url: </strong>{{photo.url}}</p>
+            <p><strong>ThumbnailUrl: </strong>{{photo.thumbnailUrl}}</p>
+            <img class="rounded" style="width:80%; height: 80%;" src="{{photo.url}}" alt="" >
+        </div>
+        <div class="col-md-3">
+            <a routerLink="/" class="btn btn-danger">Back</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Photos</h1>
+    <div id="view" class="e-btn-group">
+        <input type="radio" id="left" name="align" value="1" (click)="changeDisplay(1)"/>
+        <label class="e-btn" for="left">Grid View</label>
+        <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)"/>
+        <label class="e-btn" for="right">List View</label>
+      </div>
+
+        <div class="bar">
+            <a class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'">
+            </a><a class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'">
+            </a>
+        </div>
+       
+            <div class="row" *ngIf="display === 1">
+                <ul class="list-group">
+                    <a *ngFor="let photo of photos" [routerLink]="['/photo', photo.id]" class="list-group-item list-group-item-action animate__animated
+                        animate__bounce animate__fadeIn">
+                    {{photo.id}} - {{photo.title}}
+                    <img class="rounded" style="width:125px; height: 125px;" src="{{photo.thumbnailUrl}}" alt="" >
+                    </a>
+                </ul>
+            </div>
+            <div class="row" *ngIf="display === 2">
+                <li ng-repeat="photo in Photos">
+                    <img src="{{photo.thumbnailUrl}}" height="75px" width="75px" />
+                    
+                </li>
+            </div>
+        </div>
