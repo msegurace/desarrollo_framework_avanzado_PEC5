@@ -1,27 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse, Character } from 'src/app/models/api-response';
 import { CharactersService } from 'src/app/services/characters.service';
-
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.css']
+  styleUrls: ['./characters.component.css'],
 })
 export class CharactersComponent implements OnInit {
-
   private apiResponse?: ApiResponse;
-  characters: Character[] = [];
+  characters: any[] = [];
+  status: boolean = false;
+  toggle: boolean = true;
 
-  constructor(private characterService: CharactersService) {
-    
-  }
+  constructor(private characterService: CharactersService) {}
 
   ngOnInit(): void {
-    const response = this.characterService.getAllCharacters().subscribe((api) => {
-      console.log(api); 
-      this.apiResponse! = api;
-    });
-    //this.characters = this.apiResponse!.data.results;
+    this.status = true;
+    const response = this.characterService
+      .getAllCharacters()
+      .subscribe((api) => {
+        this.apiResponse! = api;
+        this.characters = this.apiResponse!.data.results;
+        this.status = false;
+        console.log(this.characters);
+      });
   }
 
+  toggleView(change: MatButtonToggleChange) {
+    this.toggle = change.value;
+  }
 }
