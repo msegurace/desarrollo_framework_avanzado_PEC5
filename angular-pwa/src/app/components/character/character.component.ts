@@ -12,6 +12,8 @@ export class CharacterComponent implements OnInit {
   private apiResponse?: ApiResponse;
   character?: Character;
   status: boolean = false;
+  showDetails: boolean = false;
+  labelDetails: string = 'Show All Details';
 
   constructor(
     private characterService: CharactersService,
@@ -32,5 +34,28 @@ export class CharacterComponent implements OnInit {
         this.status = false;
         console.log(this.character);
       });
+  }
+
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
+  ToggleDetails() {
+    this.showDetails = !this.showDetails;
+    if (this.showDetails) {
+      this.labelDetails = 'Hide Details';
+    } else {
+      this.labelDetails = 'Show All Details';
+    }
   }
 }

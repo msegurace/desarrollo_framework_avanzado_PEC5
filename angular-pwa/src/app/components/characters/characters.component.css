@@ -6,3 +6,7 @@
   width: 200px;
   text-align: center;
 }
+
+.content > mat-card > a {
+  text-decoration: none;
+}
